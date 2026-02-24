@@ -1,0 +1,23 @@
+--- libevent-2.1.12-stable.orig/config.h.in	2025-06-16 17:23:33.000000000 +0000
++++ libevent-2.1.12-stable/config.h.in	2025-06-16 17:27:45.000000000 +0000
+@@ -552,3 +552,4 @@
+ 
+ /* Define to `int' if <sys/types.h> does not define. */
+ #undef ssize_t
++
+--- libevent-2.1.12-stable.orig/signal.c	2025-06-16 17:23:33.000000000 +0000
++++ libevent-2.1.12-stable/signal.c	2025-06-16 17:27:45.000000000 +0000
+@@ -82,6 +82,13 @@
+   on Linux do a reasonable thing using signalfd.
+ */
+ 
++#ifdef __QNX__
++/* QNX don't have SA_RESTART */
++#ifndef SA_RESTART
++#define SA_RESTART 0
++#endif
++#endif
++
+ #ifndef _WIN32
+ /* Windows wants us to call our signal handlers as __cdecl.  Nobody else
+  * expects you to do anything crazy like this. */
