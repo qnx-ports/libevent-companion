@@ -4,7 +4,7 @@
 pkgname=libevent
 pkgver=2.1.12
 _pkgver=$pkgver-stable
-pkgrel=1
+pkgrel=${pkgrel:-0}
 pkgdesc="An event notification library"
 url="https://libevent.org/"
 arch="all"
@@ -62,6 +62,7 @@ static() {
 
 
 
+options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 88d8944cd75cbe78bc4e56a6741ca67c017a3686d5349100f1c74f8a68ac0b6410ce64dff160be4a4ba0696ee29540dfed59aaf3c9a02f0c164b00307fcfe84f  libevent-2.1.12-stable.tar.gz
 9fdd07d562b3fffd58001420e3fab304319b6f03a92f70c02dcba60bfc4540e48c61d1021e3f791bb21e1da10a7a171c67726a762e2389535cae7a8fb38c0451  fix-qnx.patch
